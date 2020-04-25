@@ -1,21 +1,39 @@
 package guru.springframework;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 class GreetingTest {
 
+    Greeting greeting;
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("In the BeforeAll...");
+    }
+
+    @BeforeEach
+    void setUp() {
+        System.out.println("In Before Each...");
+        greeting = new Greeting();
+    }
+
     @Test
     void helloWorld() {
-        Greeting greeting = new Greeting();
-
         System.out.println(greeting.helloWorld());
-
     }
 
     @Test
     void helloWorld1() {
-        Greeting greeting = new Greeting();
+        System.out.println(greeting.helloWorld("Pask"));
+    }
 
-        System.out.println(greeting.helloWorld("John"));
+    @AfterEach
+    void tearDown() {
+        System.out.println("In the AfterEach...");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("In the AfterAll...");
     }
 }
